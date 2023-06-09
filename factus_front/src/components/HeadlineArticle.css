@@ -1,0 +1,26 @@
+.headline-article {
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    text-align: left;
+    align-items: end;
+}
+
+.headline-article img {
+    border-radius: 8px;
+    max-width: 50%;
+}
+
+.headline-article-title {   
+    width: 45%;
+    max-width: 30%;
+    overflow-wrap: break-word;
+    font-size: 20px;
+    z-index: 2;
+    color: white;
+    position: absolute;
+    max-width: calc(100% - 50px);
+    margin-bottom: 24px;
+    margin-left: 16px;
+    font-weight: 700;
+}
