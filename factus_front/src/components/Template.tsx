@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import  { ReactNode } from 'react';
 import {
   IconButton,
   Avatar,
@@ -105,7 +105,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon}>
-          {/*link.name*/}
+        {" "}   
         </NavItem>
       ))}
     </Box>
@@ -224,7 +224,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                       Admin
                     </Text>*/}
                   </VStack>
-                  <Box display={{ base: 'none', md: 'flex', mr: 1 }}>
+                  <Box display={{ base: 'none', md: 'flex', mr: 1 as any }}>
                     <FiChevronDown />
                   </Box>
                 </HStack>
