@@ -36,6 +36,7 @@ import {
 } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { ReactText } from 'react';
+import { useNostr } from '../contexts/useNostr';
 
 interface LinkItemProps {
   name: string;
@@ -152,6 +153,8 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+
+  const nostr = useNostr();
   return (
     <Flex
       ml={{ base: 0, md: 20 }}
@@ -214,8 +217,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                       'https://picsum.photos/50/50'
                     }
                   />
+
                   <VStack
-                    display={{ base: 'none', md: 'flex' }}
+
                     alignItems="flex-start"
                     spacing="1px"
                     mr="2">
@@ -223,12 +227,17 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                     <Text fontSize="xs" color="gray.600">
                       Admin
                     </Text>*/}
+
                   </VStack>
-                  <Box display={{ base: 'none', md: 'flex', mr: 1 as any }}>
+                  <Box display={{ base: 'none', md: 'flex' }} m={1}>
+                  {nostr?.nostrAccountKeypair?.pubKey.slice(0, 4)}...{nostr?.nostrAccountKeypair?.pubKey.slice(nostr?.nostrAccountKeypair?.pubKey.length - 4)}
                     <FiChevronDown />
                   </Box>
+                  
                 </HStack>
+                
               </MenuButton>
+              
               <MenuList
                 bg={useColorModeValue('white', 'gray.900')}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
