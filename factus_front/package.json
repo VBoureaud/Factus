@@ -11,6 +11,7 @@
     "typechain": "typechain --target=ethers-v6 --out-dir src/types/contracts src/contracts-abi/*.json"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",

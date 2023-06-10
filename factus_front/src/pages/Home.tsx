@@ -26,6 +26,10 @@ const Home = () => {
 
   useEffect(() => {
     console.log({ contract });
+    if (contract) {
+      const e = contract.accountReputation();
+      console.log({ e });
+    }
   }, [contract]);
 
   const handleFormSubmission = async () => {

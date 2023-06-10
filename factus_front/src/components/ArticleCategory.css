@@ -1,0 +1,11 @@
+.article-category {
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 24px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
