@@ -102,7 +102,14 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       h="full"
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" color="#FF8F00" fontFamily="monospace" fontWeight="bold">
+        <Text 
+          display={{ base: 'none', md: 'flex' }}
+          fontSize="2xl" color="#FF8F00" fontFamily="monospace" fontWeight="bold">
+          F
+        </Text>
+        <Text 
+          display={{ base: 'flex', md: 'none' }}
+          fontSize="2xl" color="#FF8F00" fontFamily="monospace" fontWeight="bold">
           Factus
         </Text>
         <CloseButton color="white" display={{ base: 'flex', md: 'none' }} onClick={onClose} />
