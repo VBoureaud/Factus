@@ -91,6 +91,7 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
+  const navigate = useNavigate();
   return (
     <Box
       transition="3s ease"
@@ -108,7 +109,11 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <CloseButton color="white" display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} icon={link.icon} onClick={()=>{
+          if (link.name === "Home") {
+            navigate('/')
+          }
+        }}>
         {" "}   
         </NavItem>
       ))}
@@ -156,8 +161,9 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  const navigate = useNavigate();
+
   const nostr = useNostr();
+  const navigate = useNavigate();
 
   return (
     <Flex
