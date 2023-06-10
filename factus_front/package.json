@@ -13,12 +13,16 @@
     "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "ethers": "^6.5.1",
     "framer-motion": "^10.12.16",
     "nostr-tools": "^1.11.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
-    "react-router-dom": "^6.12.1"
+    "react-router-dom": "^6.12.1",
+    "viem": "^1.0.2",
+    "wagmi": "^1.1.1",
+    "web3": "^4.0.1"
   },
   "devDependencies": {
     "@typechain/ethers-v6": "^0.4.0",
