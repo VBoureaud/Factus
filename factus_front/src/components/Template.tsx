@@ -102,7 +102,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       {...rest}>
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" color="#FF8F00" fontFamily="monospace" fontWeight="bold">
-          F
+          Factus
         </Text>
         <CloseButton color="white" display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
@@ -181,7 +181,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
         fontSize="2xl"
         fontFamily="monospace"
         fontWeight="bold">
-        Factus
+        F
       </Text>
 
       <Input
@@ -197,7 +197,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           colorScheme='blue'
           ml={2}
           mr={2}
-        >Add a media</Button>
+        >Write an article</Button>
 
         <HStack outline="none" spacing={{ base: '0', md: '6' }}>
           <IconButton
