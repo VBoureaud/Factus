@@ -150,3 +150,14 @@
 .vote-slider {
   width: 100%;
 }
+
+.article-vote-text-and-value {
+ justify-content: left;
+ text-align: left;
+  display: flex;
+  margin-top: 16px;
+}
+
+.article-vote-text {
+  flex: 1;
+}

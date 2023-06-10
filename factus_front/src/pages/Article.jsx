@@ -26,6 +26,8 @@ const Article = () => {
   const [commentText, setCommentText] = React.useState("");
   const [isContributionPositive, setIsContributionPositive] =
     React.useState(false);
+  const [sliderValue, setSliderValue] = useState(0.001);
+  const [pointsGiven,setPointsGiven] = useState(1);
   const [contributions, setContributions] = React.useState([
     {
       text: "This is a great article!",
@@ -46,8 +48,6 @@ const Article = () => {
   ]);
 
   function SliderMarkExample() {
-    const [sliderValue, setSliderValue] = useState(0);
-
     const labelStyles = {
       mt: "2",
       ml: "-2.5",
@@ -57,26 +57,21 @@ const Article = () => {
     return (
       <Box className="vote-slider" pt={6} pb={2}>
         <Slider
-          defaultValue={0}
-          min={0}
+          defaultValue={0.001}
+          min={0.001}
           max={1}
           step={0.001}
           aria-label="slider-ex-6"
-          onChange={(val) => setSliderValue(val)}
+          onChange={(val) => {
+            setSliderValue(val);
+            setPointsGiven(50 * val.toFixed(1) > 0 ?50 * val.toFixed(1) : 1);
+          }}
         >
           <SliderMark value={0} {...labelStyles}>
-            ETH 0.001
+            0.001
           </SliderMark>
-          <SliderMark value={100} {...labelStyles}>
-            ETH 1
-          </SliderMark>
-          <SliderMark
-            value={sliderValue}
-            textAlign="center"
-            bg="blue.500"
-            color="white"
-          >
-            {sliderValue}
+          <SliderMark value={1} {...labelStyles}>
+            1
           </SliderMark>
           <SliderTrack>
             <SliderFilledTrack />
@@ -100,7 +95,17 @@ const Article = () => {
             <div className="article-description">{articleData && articleData.description}</div>
             <div className="article-body">{articleData && articleData.body}</div>
             <div className="article-author">By Anonymous</div>
-            <div className="article-votes">{SliderMarkExample()}</div>
+            <div className="article-votes">
+              {SliderMarkExample()}
+              <div className="article-vote-text-and-value">
+                <div className="article-vote-text">Amount staked:</div>
+                <div className="article-vote-value">{` ${sliderValue} ETH`}</div>
+              </div>
+              <div className="article-vote-text-and-value">
+                <div className="article-vote-text">Points given:</div>
+                <div>{pointsGiven}</div>
+              </div>
+            </div>
             <div className="article-sources">
               {articleData && articleData.sourceUrls.map((sourceUrl, index) => {
                 return (
