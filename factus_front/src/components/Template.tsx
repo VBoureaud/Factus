@@ -1,4 +1,5 @@
-import  { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   IconButton,
   Avatar,
@@ -155,8 +156,8 @@ interface MobileProps extends FlexProps {
   onOpen: () => void;
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
+  const navigate = useNavigate();
 
-  const nostr = useNostr();
   return (
     <Flex
       ml={{ base: 0, md: 20 }}
@@ -193,7 +194,11 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       />
 
       <Box display="flex" alignItems="center">
+      
         <Button
+          onClick={() => { 
+            navigate('/writearticle')
+          }}
           colorScheme='blue'
           ml={2}
           mr={2}

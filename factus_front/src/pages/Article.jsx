@@ -81,7 +81,7 @@ const Article = () => {
               <h2 className="article-contribution-title">Contribution</h2>
               <div className="article-contribution-switch">
                 <div className="article-contribution-switch-name">
-                  Is your contribution positive?
+                  Is your contribution in favor of this article?
                 </div>
                 <Switch
                   id="isChecked"
@@ -109,7 +109,7 @@ const Article = () => {
                 size="sm"
                 className="article-submit-comment-button"
               >
-                Submit Contribution
+                Submit contribution
               </Button>
             </div>
           </div>
@@ -123,7 +123,7 @@ const Article = () => {
                   <div className="contribution-votes">
                     <div className="contribution-vote-metric">
                       <div className="contribution-is-positive">
-                        {contribution.isPositive ? <Badge colorScheme="green">Positive</Badge> : <Badge colorScheme="red">Negative</Badge>}
+                        {contribution.isPositive ? <Badge colorScheme="green">in favor</Badge> : <Badge colorScheme="red">against</Badge>}
                       </div>
                       <ArrowUpIcon className="contribution-arrow" w={4} h={4} color="green.500" />
                       <div className="contribution-number">100</div>

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Article from './pages/Article'
 import Template from './components/Template'
+import WriteArticle from './pages/WriteArticle'
 import './App.css'
 import { NostrProvider } from './contexts/Nostr'
 
@@ -31,14 +32,16 @@ function App() {
   return (
     <NostrProvider>
      <ChakraProvider>
-        <Template>
           <Router>
+          <Template>
             <Routes>
               <Route path="/" element={<Home/>}/>
               <Route path="/article" element={<Article/>}/>
+              <Route path="/writearticle" element={<WriteArticle/>}/>
             </Routes>
+            </Template>
           </Router>
-        </Template>
+  
       </ChakraProvider>
     </NostrProvider>
   )
