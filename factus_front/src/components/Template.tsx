@@ -157,6 +157,7 @@ interface MobileProps extends FlexProps {
 }
 const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
   const navigate = useNavigate();
+  const nostr = useNostr();
 
   return (
     <Flex
