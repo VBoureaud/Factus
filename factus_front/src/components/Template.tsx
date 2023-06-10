@@ -38,6 +38,8 @@ import { IconType } from 'react-icons';
 import { ReactText } from 'react';
 import { useNostr } from '../contexts/useNostr';
 
+import ProfileWallet from "../components/ProfileWallet";
+
 interface LinkItemProps {
   name: string;
   icon: IconType;
@@ -214,23 +216,18 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
                   <Avatar
                     size={'sm'}
                     src={
-                      'https://picsum.photos/50/50'
+                      'https://bit.ly/broken-link'
                     }
                   />
 
                   <VStack
-
                     alignItems="flex-start"
                     spacing="1px"
                     mr="2">
-                    {/*<Text fontSize="sm">Justina Clark</Text>
-                    <Text fontSize="xs" color="gray.600">
-                      Admin
-                    </Text>*/}
+                    <Text letterSpacing={2} fontSize="sm">Profile</Text>
 
                   </VStack>
                   <Box display={{ base: 'none', md: 'flex' }} m={1}>
-                  {nostr?.nostrAccountKeypair?.pubKey.slice(0, 4)}...{nostr?.nostrAccountKeypair?.pubKey.slice(nostr?.nostrAccountKeypair?.pubKey.length - 4)}
                     <FiChevronDown />
                   </Box>
                   
@@ -241,11 +238,15 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
               <MenuList
                 bg={useColorModeValue('white', 'gray.900')}
                 borderColor={useColorModeValue('gray.200', 'gray.700')}>
-                <MenuItem>Profile</MenuItem>
-                <MenuItem>Settings</MenuItem>
-                <MenuItem>Billing</MenuItem>
+                <div>
+                  <b>NoStr</b>: {nostr?.nostrAccountKeypair?.pubKey.slice(0, 4)}...{nostr?.nostrAccountKeypair?.pubKey.slice(nostr?.nostrAccountKeypair?.pubKey.length - 4)}
+                </div>
                 <MenuDivider />
-                <MenuItem>Sign out</MenuItem>
+                <div>
+                  <ProfileWallet />
+                </div>
+                {/*<MenuDivider />
+                <MenuItem>Sign out</MenuItem>*/}
               </MenuList>
             </Menu>
           </Flex>
