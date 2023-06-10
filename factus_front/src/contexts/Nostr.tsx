@@ -1,11 +1,9 @@
 import {
   Relay,
   relayInit,
-  generatePrivateKey,
   getPublicKey,
   getEventHash,
   getSignature,
-  Event,
 } from "nostr-tools";
 import {
   createContext,
@@ -14,41 +12,16 @@ import {
   useEffect,
   useState,
 } from "react";
+import { NostrAccountKeypair } from "../types/nostr";
+import { generateNostrAccountKeypair } from "../utils/nostr";
 
 const NOSTR_URL = "wss://nostr-pub.wellorder.net ";
 
 const NostrContext = createContext<{
   relay: Relay | null;
   nostrAccountKeypair: NostrAccountKeypair | null;
-  readNostr: (filter?: any) => Promise<Event[]>
   writeToNostr: (event: any) => Promise<any>; // TODO: fix typings
 } | null>(null);
-
-interface NostrAccountKeypair {
-  pubKey: string;
-  privKey: string;
-}
-
-const generateNostrAccountKeypair = (): NostrAccountKeypair => {
-  const privKey = generatePrivateKey(); // `sk` is a hex string
-  const pubKey = getPublicKey(privKey); // `pk` is a hex string
-  return { pubKey, privKey };
-};
-
-const eventsFilter = [
-  {
-    kinds: [1],
-    // TODO: add event filtering
-    // "#i": allInscriptions.map(({ id }) => id),
-  },
-];
-
-export const demoEvent = {
-  kind: 1,
-  created_at: Math.floor(Date.now() / 1000),
-  tags: [],
-  content: "hello world",
-};
 
 const NostrProvider = ({ children }: { children: ReactNode }): JSX.Element => {
   const [relay, setRelay] = useState<Relay | null>(null);
@@ -139,24 +112,12 @@ const NostrProvider = ({ children }: { children: ReactNode }): JSX.Element => {
     [nostrAccountKeypair, relay]
   );
 
-  const readNostr = useCallback(
-    async (filter?: any /* TODO: fix typings */) => {
-      if (relay !== null) {
-        const events = await relay.list(filter || eventsFilter);
-        return events;
-      }
-      throw new Error("Not connected to nostr relay yet.")
-    },
-    [relay]
-  );
-
   return (
     <NostrContext.Provider
       value={{
         relay,
         nostrAccountKeypair,
         writeToNostr,
-        readNostr,
       }}
     >
       {children}
