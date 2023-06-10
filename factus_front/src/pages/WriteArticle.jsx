@@ -8,6 +8,10 @@ const WriteArticle = () => {
   const [articleBody, setArticleBody] = useState("");
   const [article, setArticle] = useState(undefined);
 
+  const handleAddSource = () => {
+    // Implement the logic for adding a source here
+  };
+
   return (
     <div className="write-article">
       <div className="write-article-header">Write an article</div>
@@ -16,21 +20,29 @@ const WriteArticle = () => {
         <input
           type="text"
           className="write-article-title-input"
-          onChange={() => setArticleTitle(event.target.value)}
+          onChange={(event) => setArticleTitle(event.target.value)}
         />
         <div className="write-article-description-header">Description</div>
         <input
           type="text"
           className="write-article-description-input"
-          onChange={() => setArticleDescription(event.target.value)}
+          onChange={(event) => setArticleDescription(event.target.value)}
         />
         <div className="write-article-body-header">Body</div>
         <textarea
           className="write-article-body-textarea"
-          onChange={() => setArticleBody(event.target.value)}
+          onChange={(event) => setArticleBody(event.target.value)}
           type="text"
         />
+        <div className="write-article-tags-header">Sources</div>
+        <button
+          className="write-article-add-source-button"
+          onClick={handleAddSource}
+        >
+          Add source
+        </button>
       </div>
+
       <div className="write-article-submit">
         <Button
           isDisabled={

@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { useState } from "react";
 import "./Article.css";
 import {
   Button,
@@ -9,7 +10,13 @@ import {
   TabPanels,
   Tab,
   TabPanel,
-  Badge
+  Badge,
+  Box,
+  Slider,
+  SliderMark,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
 } from "@chakra-ui/react";
 import { ArrowUpIcon, ArrowDownIcon } from "@chakra-ui/icons";
 
@@ -38,6 +45,48 @@ const Article = () => {
     },
   ]);
 
+  function SliderMarkExample() {
+    const [sliderValue, setSliderValue] = useState(0);
+
+    const labelStyles = {
+      mt: "2",
+      ml: "-2.5",
+      fontSize: "sm",
+    };
+
+    return (
+      <Box className="vote-slider" pt={6} pb={2}>
+        <Slider
+          defaultValue={0}
+          min={0}
+          max={1}
+          step={0.001}
+          aria-label="slider-ex-6"
+          onChange={(val) => setSliderValue(val)}
+        >
+          <SliderMark value={0} {...labelStyles}>
+            ETH 0.001
+          </SliderMark>
+          <SliderMark value={100} {...labelStyles}>
+            ETH 1
+          </SliderMark>
+          <SliderMark
+            value={sliderValue}
+            textAlign="center"
+            bg="blue.500"
+            color="white"
+          >
+            {sliderValue}
+          </SliderMark>
+          <SliderTrack>
+            <SliderFilledTrack />
+          </SliderTrack>
+          <SliderThumb />
+        </Slider>
+      </Box>
+    );
+  }
+
   return (
     <Tabs>
       <TabList>
@@ -51,16 +100,7 @@ const Article = () => {
             <div className="article-description">{articleData.description}</div>
             <div className="article-body">{articleData.body}</div>
             <div className="article-author">By Anonymous</div>
-            <div className="article-votes">
-              <div className="article-vote-metric">
-                <ArrowUpIcon w={8} h={8} color="green.500" />
-                <div className="article-upvotes-number">100</div>
-              </div>
-              <div className="article-vote-metric">
-                <ArrowDownIcon w={8} h={8} color="gray.500" />
-                <div className="article-downvotes-number">50</div>
-              </div>
-            </div>
+            <div className="article-votes">{SliderMarkExample()}</div>
             <div className="article-sources">
               {articleData.sourceUrls.map((sourceUrl, index) => {
                 return (
@@ -85,7 +125,11 @@ const Article = () => {
                 </div>
                 <Switch
                   id="isChecked"
-                  onChange={() => setIsContributionPositive(isContributionPositive ? false : true)}
+                  onChange={() =>
+                    setIsContributionPositive(
+                      isContributionPositive ? false : true
+                    )
+                  }
                   value={isContributionPositive}
                 />
               </div>
@@ -123,11 +167,25 @@ const Article = () => {
                   <div className="contribution-votes">
                     <div className="contribution-vote-metric">
                       <div className="contribution-is-positive">
-                        {contribution.isPositive ? <Badge colorScheme="green">in favor</Badge> : <Badge colorScheme="red">against</Badge>}
+                        {contribution.isPositive ? (
+                          <Badge colorScheme="green">in favor</Badge>
+                        ) : (
+                          <Badge colorScheme="red">against</Badge>
+                        )}
                       </div>
-                      <ArrowUpIcon className="contribution-arrow" w={4} h={4} color="green.500" />
+                      <ArrowUpIcon
+                        className="contribution-arrow"
+                        w={4}
+                        h={4}
+                        color="green.500"
+                      />
                       <div className="contribution-number">100</div>
-                      <ArrowDownIcon className="contribution-arrow" w={4} h={4} color="gray.500" />
+                      <ArrowDownIcon
+                        className="contribution-arrow"
+                        w={4}
+                        h={4}
+                        color="gray.500"
+                      />
                       <div className="contribution-number">50</div>
                     </div>
                   </div>
