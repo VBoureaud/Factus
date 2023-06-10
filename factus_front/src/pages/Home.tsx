@@ -1,16 +1,32 @@
 import { Button, Textarea } from "@chakra-ui/react";
-import { useState } from "react";
-
+import { useState, useContext, useEffect } from "react";
 import { useNostr } from "../contexts/useNostr";
 
 import { useNostrRead } from "../contexts/useNostrRead";
 import { demoEventConstructor, eventsFilterByAccountConstructor } from "../utils/nostr";
+
+import Web3Context from "../store/web3Context";
 
 const Home = () => {
   const [inputData, setInputData] = useState();
   const [loading, setLoading] = useState(false);
   const nostr = useNostr();
   const relayedData = useNostrRead(eventsFilterByAccountConstructor(nostr?.nostrAccountKeypair?.pubKey))
+
+  const {
+    contract,
+    initContract,
+  } = useContext(Web3Context);
+
+  // DidMount
+  useEffect(() => {
+    console.log('init');
+    initContract();
+  }, []);
+
+  useEffect(() => {
+    console.log({ contract });
+  }, [contract]);
 
   const handleFormSubmission = async () => {
     const event = demoEventConstructor(inputData || "")
