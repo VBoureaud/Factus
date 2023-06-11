@@ -7,10 +7,17 @@ import {
   useContractWrite,
   useWaitForTransaction,
 } from 'wagmi'
+import { useNostr } from '../../contexts/useNostr';
 
 export default function RegisterNostrKeyComponent() {
   const { isConnected } = useAccount()
   const [token, setToken] = React.useState('')
+  const nostr = useNostr();
+
+  React.useEffect(() => {
+    if (nostr?.nostrAccountKeypair?.pubKey)
+      setToken(nostr?.nostrAccountKeypair?.pubKey);
+  }, [nostr]);
 
   const { config } = usePrepareContractWrite({
     address: ReputationSystemAddress.Contract,
