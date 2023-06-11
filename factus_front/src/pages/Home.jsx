@@ -10,6 +10,8 @@ import "../pages/Home.css";
 
 import Web3Context from "../store/web3Context";
 
+import RegisterNostrKeyComponent from "../components/ContractMethods/registerNostrKey";
+
 const Home = () => {
   const nostr = useNostr();
   const relayedData = useNostrRead(eventsFilterByAccountConstructor(nostr?.nostrAccountKeypair?.pubKey))
@@ -18,21 +20,6 @@ const Home = () => {
     contract,
     initContract,
   } = useContext(Web3Context);
-
-  // DidMount
-  useEffect(() => {
-    console.log('init');
-    initContract();
-  }, []);
-
-  useEffect(() => {
-    console.log({ contract });
-    if (contract) {
-      const e = contract.accountReputation();
-      console.log({ e });
-    }
-  }, [contract]);
-
 
   const navigate = useNavigate();
   const [categories, setCategories] = useState([
@@ -97,6 +84,7 @@ const Home = () => {
 
   return (
     <div className="home">
+      <RegisterNostrKeyComponent />
       {articles.map((article, index) => {
         return (
           <Article
