@@ -46,11 +46,8 @@ interface LinkItemProps {
   icon: IconType;
 }
 const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+  { name: 'Home', icon: FiHome, href: '/' },
+  { name: 'Settings', icon: FiSettings, href: '/settings' },
 ];
 
 export default function SidebarWithHeader({
@@ -117,9 +114,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       </Flex>
       {LinkItems.map((link) => (
         <NavItem key={link.name} icon={link.icon} onClick={()=>{
-          if (link.name === "Home") {
-            navigate('/')
-          }
+          navigate(link.href)
         }}>
         {" "}   
         </NavItem>

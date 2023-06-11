@@ -10,8 +10,6 @@ import "../pages/Home.css";
 
 import Web3Context from "../store/web3Context";
 
-import RegisterNostrKeyComponent from "../components/ContractMethods/registerNostrKey";
-
 const Home = () => {
   const nostr = useNostr();
   const relayedData = useNostrRead(eventsFilterByAccountConstructor(nostr?.nostrAccountKeypair?.pubKey))
@@ -84,7 +82,6 @@ const Home = () => {
 
   return (
     <div className="home">
-      <RegisterNostrKeyComponent />
       {articles.map((article, index) => {
         return (
           <Article

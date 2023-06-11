@@ -2,8 +2,9 @@ import { ChakraProvider } from '@chakra-ui/react'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Article from "./pages/Article";
-import Template from './components/Template'
 import WriteArticle from "./pages/WriteArticle";
+import Settings from "./pages/Settings";
+import Template from './components/Template'
 import { Web3ContextProvider } from "./store/web3Context";
 import "./App.css";
 import { NostrProvider } from "./contexts/Nostr";
@@ -39,6 +40,7 @@ function App() {
                   <Route path="/" element={<Home />} />
                   <Route path="/article" element={<Article />} />
                   <Route path="/writearticle" element={<WriteArticle />} />
+                  <Route path="/settings" element={<Settings />} />
                 </Routes>
               </Template>
             </Router>

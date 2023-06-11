@@ -23,24 +23,30 @@ export default function RegisterNostrKeyComponent() {
 
   if (!isConnected)
     return (
-      <span>Not connected to blockchain</span>
+      <>
+        <h3 style={{ fontSize: '22px' }}>Register Account to NoStr</h3>
+        <span>Not connected to blockchain</span>
+      </>
     );
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault()
-        write?.()
-      }}
-    >
-      <label htmlFor="tokenId">Token ID</label>
-      <input
-        id="tokenId"
-        onChange={(e) => setToken(e.target.value)}
-        placeholder="420"
-        value={token}
-      />
-      <button disabled={!write}>Submit</button>
-    </form>
+    <>
+      <h3 style={{ fontSize: '22px' }}>Register Account to NoStr</h3>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          write?.()
+        }}
+      >
+        <label htmlFor="token">Key: </label>
+        <input
+          id="token"
+          onChange={(e) => setToken(e.target.value)}
+          placeholder="7edd...759f"
+          value={token}
+        />
+        <button style={{ marginLeft: '5px' }} disabled={!write}>Submit</button>
+      </form>
+    </>
   )
 }
